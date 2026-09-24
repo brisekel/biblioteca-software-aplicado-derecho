@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Biblioteca Virtual | Software Aplicado - Derecho</title>
+  <style>
+    :root{
+      --navy:#071b3a;
+      --blue:#0d4f9e;
+      --cyan:#27b8e8;
+      --gold:#e8b84a;
+      --burgundy:#7b1830;
+      --cream:#f7f4ed;
+      --ink:#18253a;
+      --white:#fff;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Segoe UI,Arial,sans-serif;
+      background:linear-gradient(135deg,#eef4fb,#f8f5ef);
+      color:var(--ink);
+    }
+    header{
+      min-height:390px;
+      padding:55px 7%;
+      color:white;
+      background:
+        radial-gradient(circle at 80% 20%,rgba(39,184,232,.35),transparent 25%),
+        radial-gradient(circle at 15% 80%,rgba(232,184,74,.20),transparent 30%),
+        linear-gradient(120deg,#061631,#0a3268 60%,#071b3a);
+      position:relative;
+      overflow:hidden;
+    }
+    header:after{
+      content:"⚖";
+      position:absolute;
+      right:7%;
+      bottom:-65px;
+      font-size:300px;
+      color:rgba(255,255,255,.055);
+    }
+    .tag{
+      display:inline-block;
+      padding:8px 15px;
+      border:1px solid rgba(255,255,255,.3);
+      border-radius:30px;
+      background:rgba(255,255,255,.08);
+      font-size:.85rem;
+      letter-spacing:.5px;
+    }
+    h1{
+      max-width:850px;
+      font-size:clamp(2.2rem,5vw,4.5rem);
+      line-height:1.05;
+      margin:25px 0 18px;
+    }
+    header p{
+      max-width:760px;
+      font-size:1.12rem;
+      line-height:1.7;
+      color:#dcecff;
+    }
+    .tech-line{
+      margin-top:28px;
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+    .tech-line span{
+      padding:8px 13px;
+      border-radius:8px;
+      background:rgba(39,184,232,.12);
+      border:1px solid rgba(39,184,232,.3);
+      color:#bceeff;
+      font-size:.9rem;
+    }
+    main{max-width:1200px;margin:auto;padding:55px 6%}
+    .intro{
+      display:grid;
+      grid-template-columns:1.4fr .6fr;
+      gap:25px;
+      margin-bottom:45px;
+    }
+    .panel{
+      background:white;
+      border-radius:22px;
+      padding:28px;
+      box-shadow:0 15px 45px rgba(9,37,72,.08);
+      border:1px solid #e5ebf3;
+    }
+    .panel h2{margin-top:0;color:var(--navy)}
+    .elibro{
+      background:linear-gradient(135deg,var(--burgundy),#a92b49);
+      color:white;
+    }
+    .elibro h2{color:white}
+    .btn{
+      display:inline-block;
+      margin-top:12px;
+      padding:12px 18px;
+      border-radius:10px;
+      text-decoration:none;
+      font-weight:700;
+      background:var(--gold);
+      color:#261a05;
+    }
+    .section-title{
+      display:flex;
+      align-items:end;
+      justify-content:space-between;
+      gap:15px;
+      margin:45px 0 20px;
+    }
+    .section-title h2{margin:0;color:var(--navy)}
+    .section-title p{margin:0;color:#66748a}
+    .search{
+      width:100%;
+      padding:16px 18px;
+      border:2px solid #dce5ef;
+      border-radius:14px;
+      font-size:1rem;
+      outline:none;
+      margin-bottom:25px;
+    }
+    .search:focus{border-color:var(--cyan)}
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:20px;
+    }
+    .card{
+      background:white;
+      border-radius:20px;
+      padding:23px;
+      box-shadow:0 10px 30px rgba(9,37,72,.07);
+      border-top:5px solid var(--blue);
+      transition:.2s;
+    }
+    .card:hover{transform:translateY(-4px);box-shadow:0 16px 35px rgba(9,37,72,.12)}
+    .icon{
+      width:48px;height:48px;
+      border-radius:14px;
+      display:grid;place-items:center;
+      background:#e8f5fb;
+      font-size:25px;
+      margin-bottom:14px;
+    }
+    .card h3{font-size:1.05rem;line-height:1.35;margin:0 0 9px;color:var(--navy)}
+    .card p{font-size:.9rem;line-height:1.55;color:#647287;margin:0}
+    .card a{
+      display:inline-block;
+      margin-top:16px;
+      color:var(--blue);
+      font-weight:700;
+      text-decoration:none;
+    }
+    .tools{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:15px;
+      margin-top:25px;
+    }
+    .tool{
+      background:#fff;
+      border-radius:17px;
+      padding:20px;
+      text-align:center;
+      border:1px solid #e4eaf2;
+    }
+    .tool strong{display:block;margin-top:9px;color:var(--navy)}
+    .note{
+      margin-top:35px;
+      padding:20px 24px;
+      border-left:5px solid var(--gold);
+      background:#fffaf0;
+      border-radius:10px;
+      line-height:1.6;
+    }
+    footer{
+      background:var(--navy);
+      color:#dbe8f8;
+      text-align:center;
+      padding:30px 20px;
+      font-size:.9rem;
+    }
+    footer strong{color:white}
+    @media(max-width:900px){
+      .grid{grid-template-columns:repeat(2,1fr)}
+      .intro{grid-template-columns:1fr}
+      .tools{grid-template-columns:repeat(2,1fr)}
+    }
+    @media(max-width:600px){
+      .grid,.tools{grid-template-columns:1fr}
+      header{padding:40px 6%}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <span class="tag">SOFTWARE APLICADO · CARRERA DE DERECHO</span>
+  <h1>Biblioteca Virtual<br>del Jurista Digital</h1>
+  <p>
+    Un espacio de consulta para fortalecer las competencias tecnológicas
+    de los estudiantes de Derecho, conectando la informática, la ofimática
+    y las herramientas digitales con las necesidades reales del ejercicio jurídico.
+  </p>
+  <div class="tech-line">
+    <span>⚖ Derecho + Tecnología</span>
+    <span>💻 Informática</span>
+    <span>📄 Ofimática</span>
+    <span>🔎 Investigación digital</span>
+    <span>☁ Entornos virtuales</span>
+  </div>
+</header>
+
+<main>
+
+  <section class="intro">
+    <div class="panel">
+      <h2>📚 ¿Cómo utilizar esta biblioteca?</h2>
+      <p>
+        Explore los recursos según la necesidad de aprendizaje. Los libros de
+        informática aportan las bases tecnológicas de la asignatura, mientras
+        que los recursos de ofimática permiten desarrollar habilidades para
+        elaborar documentos, organizar información, analizar datos y preparar
+        presentaciones profesionales aplicables al ámbito jurídico.
+      </p>
+      <p>
+        <strong>Idea clave:</strong> aprender tecnología no como un fin aislado,
+        sino como una herramienta para el trabajo académico y profesional del futuro abogado.
+      </p>
+    </div>
+
+    <div class="panel elibro">
+      <h2>📖 Biblioteca eLibro</h2>
+      <p>
+        Consulte el catálogo académico de eLibro. La plataforma incluye
+        contenidos de áreas como <strong>Derecho</strong> e
+        <strong>Informática, Computación y Telecomunicaciones</strong>.
+      </p>
+      <a class="btn" href="https://www.elibro.com/" target="_blank" rel="noopener">
+        Abrir eLibro ↗
+      </a>
+    </div>
+  </section>
+
+  <div class="section-title">
+    <div>
+      <h2>📘 Bibliografía de la asignatura</h2>
+      <p>Recursos indicados en la planificación y biblioteca institucional.</p>
+    </div>
+  </div>
+
+  <input class="search" id="search" type="search"
+         placeholder="🔎 Buscar por título, autor o tema...">
+
+  <section class="grid" id="books">
+
+    <article class="card">
+      <div class="icon">⌨️</div>
+      <h3>Vocabulario de informática & teclado</h3>
+      <p>Correa Alzate, Alejandro · 2009 · El Cid Editor.</p>
+      <a href="https://www.elibro.com/" target="_blank">Buscar en eLibro ↗</a>
+    </article>
+
+    <article class="card">
+      <div class="icon">💻</div>
+      <h3>Nociones de informática</h3>
+      <p>Cruz, Carolina del Rosario · 2009 · El Cid Editor.</p>
+      <a href="https://www.elibro.com/" target="_blank">Buscar en eLibro ↗</a>
+    </article>
+
+    <article class="card">
+      <div class="icon">🖥️</div>
+      <h3>Principios Básicos de Informática</h3>
+      <p>García-Cuevas Roque, Elena · 2009 · Dykinson.</p>
+      <a href="https://www.elibro.com/" target="_blank">Buscar en eLibro ↗</a>
+    </article>
+
+    <article class="card">
+      <div class="icon">🌐</div>
+      <h3>Introducción a la Informática</h3>
+      <p>Olivera Reyes, Jesús René · 2007 · Editorial Universitaria.</p>
+      <a href="https://www.elibro.com/" target="_blank">Buscar en eLibro ↗</a>
+    </article>
+
+    <article class="card">
+      <div class="icon">🗂️</div>
+      <h3>Ofimática · Tutoriales</h3>
+      <p>Material de apoyo para el desarrollo de competencias digitales aplicadas.</p>
+      <a href="https://www.elibro.com/" target="_blank">Explorar eLibro ↗</a>
+    </article>
+
+    <article class="card">
+      <div class="icon">🗃️</div>
+      <h3>Access 2016</h3>
+      <p>Material de consulta para bases de datos y organización de información.</p>
+      <a href="https://www.elibro.com/" target="_blank">Explorar eLibro ↗</a>
+    </article>
+
+    <article class="card">
+      <div class="icon">📊</div>
+      <h3>Excel 2016</h3>
+      <p>Herramientas para organizar, analizar y presentar información.</p>
+      <a href="https://www.elibro.com/" target="_blank">Explorar eLibro ↗</a>
+    </article>
+
+    <article class="card">
+      <div class="icon">📽️</div>
+      <h3>Tutoría de PowerPoint</h3>
+      <p>Apoyo para la creación de presentaciones académicas y profesionales.</p>
+      <a href="https://www.elibro.com/" target="_blank">Explorar eLibro ↗</a>
+    </article>
+
+    <article class="card">
+      <div class="icon">🎞️</div>
+      <h3>PowerPoint 2016</h3>
+      <p>Recursos para comunicar información mediante presentaciones digitales.</p>
+      <a href="https://www.elibro.com/" target="_blank">Explorar eLibro ↗</a>
+    </article>
+
+    <article class="card">
+      <div class="icon">📝</div>
+      <h3>Word 2016</h3>
+      <p>Procesamiento de textos para documentos académicos y profesionales.</p>
+      <a href="https://www.elibro.com/" target="_blank">Explorar eLibro ↗</a>
+    </article>
+
+  </section>
+
+  <div class="section-title">
+    <div>
+      <h2>⚖️ Tecnología aplicada al Derecho</h2>
+      <p>La biblioteca también puede utilizarse para investigar estas áreas.</p>
+    </div>
+  </div>
+
+  <section class="tools">
+    <div class="tool">📄<strong>Documentos jurídicos</strong></div>
+    <div class="tool">📊<strong>Análisis de datos</strong></div>
+    <div class="tool">🔐<strong>Seguridad digital</strong></div>
+    <div class="tool">🤖<strong>IA y Derecho</strong></div>
+  </section>
+
+  <div class="note">
+    <strong>💡 Reto del jurista digital:</strong>
+    cada herramienta tecnológica debe utilizarse con criterio profesional,
+    responsabilidad, protección de la información y respeto por la propiedad intelectual.
+    Los enlaces a plataformas externas pueden requerir las credenciales institucionales.
+  </div>
+
+</main>
+
+<footer>
+  <strong>Software Aplicado · Derecho</strong><br>
+  Biblioteca virtual para el aprendizaje tecnológico aplicado al ejercicio jurídico.
+</footer>
+
+<script>
+  const search = document.getElementById("search");
+  const cards = document.querySelectorAll(".card");
+
+  search.addEventListener("input", () => {
+    const q = search.value.toLowerCase().trim();
+    cards.forEach(card => {
+      card.style.display = card.innerText.toLowerCase().includes(q) ? "" : "none";
+    });
+  });
+</script>
+
+</body>
+</html>
